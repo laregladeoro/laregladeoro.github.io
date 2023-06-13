@@ -1,0 +1,148 @@
+
+body {
+  background-image: url('rdo_tablita.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
+.contenedor {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+
+  .cuadro-texto {
+  position: absolute;
+  width: 5%;
+  margin-bottom: 5px;
+  background-color: #f1f1f1;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: both;
+  font-size: 12px;
+}
+
+.cuadro-texto:nth-child(1) {
+  top: 26vh;
+  left: 20vh;
+  width: 12vw;
+}
+
+.cuadro-texto:nth-child(2) {
+  top: 26vh;
+  right:20vh;
+  width: 12vw;
+}
+
+.cuadro-texto:nth-child(3) {
+  top: 40vh;
+  left: 16vh;
+  width: 10vw;
+
+}
+
+.cuadro-texto:nth-child(4) {
+  top: 50vh;
+  left: 52vh;
+  width: 10vw;
+}
+
+.cuadro-texto:nth-child(5) {
+   bottom: 48vh;
+   right: 32vh;
+  width: 10vw;
+}
+
+.cuadro-texto:nth-child(6) {
+  bottom: 42vh;
+   right: 1vh;
+  width: 10vw;
+}
+
+.cuadro-texto:nth-child(7) {
+  bottom: 15vh;
+  left: 20vh;
+  width: 12vw;
+}
+
+.cuadro-texto:nth-child(8) {
+  bottom: 15vh;
+  right: 20vh;
+  width:12vw;
+}
+
+
+
+
+}
+@media screen and (min-width: 1200px) {
+
+.cuadro-texto {
+  position: absolute;
+  width: 5%;
+  margin-bottom: 5px;
+  background-color: #f1f1f1;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: both;
+  font-size: 12px;
+}
+
+.cuadro-texto:nth-child(1) {
+  top: 25vh;
+  left: 40vh;
+  width: 12vw;
+}
+
+.cuadro-texto:nth-child(2) {
+  top: 25vh;
+  right:30vh;
+  width: 12vw;
+}
+
+.cuadro-texto:nth-child(3) {
+  top: 50vh;
+  left: 38vh;
+  width: 12vw;
+
+}
+
+.cuadro-texto:nth-child(4) {
+  top: 50vh;
+  left: 72vh;
+  width: 12vw;
+}
+
+.cuadro-texto:nth-child(5) {
+   bottom: 45vh;
+   right: 36vh;
+  width: 12vw;
+}
+
+.cuadro-texto:nth-child(6) {
+  bottom: 42vh;
+   right: 1vh;
+  width: 12vw;
+}
+
+.cuadro-texto:nth-child(7) {
+  bottom: 15vh;
+  left: 40vh;
+  width: 12vw;
+}
+
+.cuadro-texto:nth-child(8) {
+  bottom: 15vh;
+  right: 30vh;
+  width:12vw;
+}
+
+}
