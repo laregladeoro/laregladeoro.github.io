@@ -48,18 +48,8 @@
         <td>
           <center>
             <strong>NOMBRE:</strong>
+          <input type="text" id="txtowner">
           </center>
-          <table width="100%">
-            <tr>
-              <td width="200px">Eber Rojas Duque</td>
-              <td><button class="btn btn-warning btn-sm" onclick="loadboard('01')"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                  </svg></button></td>
-            </tr>
-          </table>
 
         </td>
         <td rowspan="3" colspan="16"><img name="maquetaboard_r2_c3" src="images/maqueta-board_r2_c3.gif" width="949"
@@ -70,6 +60,7 @@
         <td>
           <center>
             <strong>TABLERO ACTIVO:</strong>
+            <div id="activeboard"></div>
           </center>
         </td>
         <td><img src="images/spacer.gif" width="1" height="23" border="0" alt="" /></td>
@@ -77,81 +68,11 @@
       <tr>
         <!--tableros-->
         <td rowspan="16" class="txtinput">
-          <table width="100%">
-            <tr>
-              <td width="200px">Exigente</td>
-              <td><button class="btn btn-success btn-sm" onclick="loadboard('01')">Guardar</button></td>
-            </tr>
-          </table>
+          <div id="tableros"></div>
           <br>
-          <table class="table table-striped">
-            <tr>
-              <td colspan="3">TIPO DE MALTRATO</td>
-            </tr>
-            <tr>
-              <td>01</td>
-              <td>
-                <div id="tablero01">Exigente</div>
-              </td>
-              <td><button class="btn btn-primary btn-sm" onclick="loadboard('01')">Ver</button></td>
-            </tr>
-            <tr>
-              <td>02</td>
-              <td>
-                <div id="tablero02">Rechazad@</div>
-              </td>
-              <td><button class="btn btn-primary btn-sm">Ver</button></td>
-            </tr>
-            <tr>
-              <td>03</td>
-              <td>
-                <div id="tablero03">Violentad@</div>
-              </td>
-              <td><button class="btn btn-primary btn-sm">Ver</button></td>
-            </tr>
-            <tr>
-              <td>04</td>
-              <td>
-                <div id="tablero04">Discriminad@</div>
-              </td>
-              <td><button class="btn btn-primary btn-sm">Ver</button></td>
-            </tr>
-            <tr>
-              <td>05</td>
-              <td>
-                <div id="tablero05">Traicionad@</div>
-              </td>
-              <td><button class="btn btn-primary btn-sm">Ver</button></td>
-            </tr>
-            <tr>
-              <td>06</td>
-              <td>
-                <div id="tablero06">Burlad@</div>
-              </td>
-              <td><button class="btn btn-primary btn-sm">Ver</button></td>
-            </tr>
-            <tr>
-              <td>07</td>
-              <td>
-                <div id="tablero07">Injusticia</div>
-              </td>
-              <td><button class="btn btn-primary btn-sm">Ver</button></td>
-            </tr>
-            <tr>
-              <td>08</td>
-              <td>
-                <div id="tablero08">Expulsad@</div>
-              </td>
-              <td><button class="btn btn-primary btn-sm">Ver</button></td>
-            </tr>
-            <tr>
-              <td>09</td>
-              <td>
-                <div id="tablero08">Ignorad@</div>
-              </td>
-              <td><button class="btn btn-primary btn-sm">Ver</button></td>
-            </tr>
-          </table>
+          <center>
+            <span class="btn btn-primary" onclick="FNSAVEALL()">GUARDAR</span>
+          </center>
         </td>
         <td><img src="images/spacer.gif" width="1" height="27" border="0" alt="" /></td>
       </tr>
@@ -195,7 +116,7 @@
             border="0" id="maquetaboard_r8_c12" alt="" /></td>
         <!--txt07-->
         <td rowspan="4" class="txtinput dark">
-          <textarea class="dark textarea120"></textarea>
+          <textarea class="dark textarea120" id="txt07"></textarea>
         </td>
         <td rowspan="2" colspan="2"><img name="maquetaboard_r8_c14" src="images/maqueta-board_r8_c14.gif" width="145"
             height="2" border="0" id="maquetaboard_r8_c14" alt="" /></td>
@@ -303,10 +224,11 @@
 
 <!--SCRIPT-->
 <script>
-  let boards = []
-  class clsBOARD(){
-    constructor(){
-      this.id = null
+
+  class clsBOARD {
+    constructor(piid){
+      this.id = piid
+      this.name = piid
       this.owner = null
       this.txt01 = null
       this.txt02 = null
@@ -319,14 +241,81 @@
       this.txtpedido01 = null
       this.txtpedido02 = null
       this.txtpedido03 = null
-    }
-    load(){
-
+      document.getElementById("tableros").innerHTML = document.getElementById("tableros").innerHTML + `<div class='tablero' onclick="FNSELECTBOARD('${piid}')">${this.name}</div>`
     }
     save(){
-
+      this.owner = document.getElementById("txtowner").value 
+      this.txt01 = document.getElementById("txt01").value 
+      this.txt02 = document.getElementById("txt02").value 
+      this.txt03 = document.getElementById("txt03").value 
+      this.txt04 = document.getElementById("txt04").value 
+      this.txt05 = document.getElementById("txt05").value 
+      this.txt06 = document.getElementById("txt06").value 
+      this.txt07 = document.getElementById("txt07").value 
+      this.txt08 = document.getElementById("txt08").value 
+      this.txtpedido01 = document.getElementById("txtpedido01").value 
+      this.txtpedido02 = document.getElementById("txtpedido02").value 
+      this.txtpedido03 = document.getElementById("txtpedido03").value 
+    }
+    load(){
+      document.getElementById("txtowner").value = this.owner
+      document.getElementById("txt01").value = this.txt01
+      document.getElementById("txt02").value = this.txt02
+      document.getElementById("txt03").value = this.txt03
+      document.getElementById("txt04").value = this.txt04
+      document.getElementById("txt05").value = this.txt05
+      document.getElementById("txt06").value = this.txt06
+      document.getElementById("txt07").value = this.txt07
+      document.getElementById("txt08").value = this.txt08
+      document.getElementById("txtpedido01").value = this.txtpedido01
+      document.getElementById("txtpedido02").value = this.txtpedido02
+      document.getElementById("txtpedido03").value = this.txtpedido03
     }
   }
+
+  function FNSAVEALL(){
+    //
+    let o = boards.filter(id => id.id === activeboard);
+    console.log('o: ', o[0].id)
+    let index = o[0].id - 1
+    boards[index].save()
+    //
+    localStorage.setItem('tableros', JSON.stringify(boards))
+    console.log(localStorage.getItem('tableros'))
+    console.log(JSON.parse(localStorage.getItem('tableros')))
+  }
+
+  function FNSELECTBOARD(piid){
+    activeboard = piid
+    let o = boards.filter(id => id.id === piid);
+    console.log('o: ', o[0].id)
+    let index = o[0].id - 1
+    boards[index].load()
+    //let days = fndays(m[0].end, advance.date)
+    document.getElementById("activeboard").innerHTML = piid + ': ' 
+  }
+
+  let boards = []
+  let activeboard = null
+  let oBoard01 = new clsBOARD('1')
+  let oBoard02 = new clsBOARD('2')
+  let oBoard03 = new clsBOARD('3')
+  let oBoard04 = new clsBOARD('4')
+  let oBoard05 = new clsBOARD('5')
+  let oBoard06 = new clsBOARD('6')
+  let oBoard07 = new clsBOARD('7')
+  let oBoard08 = new clsBOARD('8')
+  let oBoard09 = new clsBOARD('9')
+  boards.push(oBoard01)
+  boards.push(oBoard02)
+  boards.push(oBoard03)
+  boards.push(oBoard04)
+  boards.push(oBoard05)
+  boards.push(oBoard06)
+  boards.push(oBoard07)
+  boards.push(oBoard08)
+  boards.push(oBoard09)
+  console.log(boards)
 
 </script>
 
@@ -358,5 +347,16 @@
 
   .button {
     cursor: pointer;
+  }
+
+  .tablero{
+    display: block;
+    width: 100%;    
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius:10px;
+    padding:10px;
+    cursor: pointer;
+    margin-top:5px;
   }
 </style>
